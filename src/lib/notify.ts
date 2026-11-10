@@ -26,6 +26,7 @@ export const logNotifier: Notifier = {
   },
 };
 
+/** Telegram version when a bot token is configured, otherwise the log version. */
 export async function getNotifier(): Promise<Notifier> {
   if (!process.env.TELEGRAM_BOT_TOKEN) return logNotifier;
   const { telegramNotifier } = await import("@/bot/notifier");

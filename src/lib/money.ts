@@ -9,6 +9,11 @@ export function formatAmount(amount: number): string {
   return String(Math.trunc(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, NBSP);
 }
 
+/** Totals (revenue, payments): 0 stays "0 soʻm", never "Bepul". */
+export function formatSum(amount: number, locale: Locale): string {
+  return `${formatAmount(amount)}${NBSP}${locale === "uz" ? "soʻm" : "сум"}`;
+}
+
 /** "150 000 soʻm", "150 000 soʻmdan", "Bepul" / "150 000 сум", "от 150 000 сум", "Бесплатно". */
 export function formatMoney(amount: number, locale: Locale, priceIsFrom = false): string {
   if (amount === 0) return locale === "uz" ? "Bepul" : "Бесплатно";

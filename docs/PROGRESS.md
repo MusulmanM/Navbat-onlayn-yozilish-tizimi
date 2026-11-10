@@ -1,6 +1,7 @@
 # Bosqichlar holati
 
-Joriy bosqich: **3 — Kirish, onboarding va panel (jarayonda)**
+Joriy bosqich: **3 — Kirish, onboarding va panel (jarayonda, to'xtatilgan)**
+Keyingi qadam: onboarding, so'ng panelning qolgan sahifalari. Messages: `messages/*.json` da `Services`, `StaffPage`, `Schedule`, `Settings`, `Qr`, `Billing`, `Onboarding` bo'limlari hali yo'q.
 Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 0-bosqich: Tayyorgarlik
@@ -32,13 +33,20 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 - [x] `notify.ts` (log versiyasi; bot tokeni bo'lsa Telegram versiyasi)
 - [x] `docs/QA.md` ssenariylari, bosqich tekshiruvi va commit
 
-## 3-bosqich: Kirish, onboarding va panel
+## 3-bosqich: Kirish, onboarding va panel (jarayonda — 2026-11-10 da to'xtatildi)
 
-- [ ] Test bot (@BotFather), bot karkasi, `npm run bot:dev`, webhook route, `/start login_...`, `/id`
-- [ ] Kirish (7.4), sessiya va himoya (10)
-- [ ] Onboarding (7.5)
-- [ ] Panel: Bugun, Kalendar, Yozilishlar, Mijozlar, Xizmatlar, Ustalar, Sozlamalar, QR, Obuna (7.6)
-- [ ] `guards.ts` testlari, bosqich tekshiruvi va commit
+- [ ] Test bot (@BotFather) — egasi qiladi
+- [x] Bot: `src/bot/` (start/login/biz/bk deep link'lar, buyruqlar, callback'lar, matnlar uz/ru), `npm run bot:dev`, webhook route, `npm run bot:set-webhook`
+- [x] Kirish (7.4): login token API'lari, `/login` sahifasi (QR, taymer, so'rov), sessiya (jose), `proxy.ts` himoyasi, guards
+- [x] Panel qobig'i: yon menyu / pastki menyu, obuna va nashr bannerlari, "Yozilish qo'shish" oynasi
+- [x] `/panel` — Bugun (statistika, tasdiq kutayotganlar, bugungi ro'yxat, tezkor amallar)
+- [x] `/panel/kalendar` — kun/hafta, ustunlar, tafsilotlar, vaqtni ko'chirish, izoh (yozildi, brauzerda hali sinalmagan)
+- [ ] Onboarding (7.5) — 5 qadam
+- [ ] `/panel/yozilishlar` (filtrlar, sahifalash)
+- [ ] `/panel/mijozlar` va mijoz sahifasi
+- [ ] `/panel/xizmatlar`, `/panel/ustalar` (dam olish kunlari bilan)
+- [ ] `/panel/sozlamalar` (5 tab), `/panel/qr`, `/panel/yana`
+- [ ] `guards.ts` testlari, brauzerda to'liq sinov, bosqich tekshiruvi va commit
 
 ## 4-bosqich: Telegram bot to'liq
 
