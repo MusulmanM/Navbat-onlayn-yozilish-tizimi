@@ -17,3 +17,15 @@ Format: sana — qaror — sabab.
 - 2026-11-10 — `shadcn` paketi `devDependencies` ga o'tkazildi — undan faqat CSS fayl build vaqtida olinadi; production paketlarida zaiflik qolmadi (`npm audit --omit=dev` toza).
 - 2026-11-10 — Input chegarasi rangi `#8391a7` (oq fonda 3.2:1) — WCAG talabi bo'yicha maydon chegarasi kamida 3:1 bo'lishi kerak.
 - 2026-11-10 — `messages` uchun test: uz/ru kalitlari bir xil va o'zbekcha matnda ASCII apostrof yo'q (faqat `ʻ`/`ʼ`) — imlo xatolari avtomatik ushlanadi.
+
+## 1-bosqich
+
+- 2026-11-10 — Prisma 7: generator `prisma-client` (yangi, tavsiya etilgan; `prisma-client-js` eskirgan), mijoz kodi `src/generated/prisma` ga yoziladi (git'ga tushmaydi, `postinstall` da yaratiladi). Ulanish: `@prisma/adapter-pg`; ulanish manzillari `prisma.config.ts` da (Prisma 7 talabi). Migratsiyalar `DIRECT_URL`, ilova `DATABASE_URL` (pooler) ishlatadi.
+- 2026-11-10 — Baza sessiyasi har doim UTC (`-c TimeZone=UTC`) — Prisma'ning pg adapteri vaqtni zonasiz yuboradi; server zonasi UTC bo'lmasa (masalan lokal kompyuter) vaqtlar siljib saqlanardi. Sinab tasdiqlangan.
+- 2026-11-10 — Sxemaga qo'shimcha maydonlar: `Business.onboardingStep` (onboarding qayerda to'xtagani), `Business.lastBillingNotice` (obuna ogohlantirishi ikki marta ketmasligi uchun), `Business.paymentClaimedAt` ("To'ladim" bosilgani); qo'shimcha indekslar: `Booking(status, startsAt)`, `StaffService(serviceId)`, `LoginToken(createdAt)`, `RateLimit(windowStart)` — cron va panel so'rovlari tez ishlashi uchun.
+- 2026-11-10 — Rate limit bitta atomar SQL (`INSERT … ON CONFLICT DO UPDATE`) bilan — ikki parallel so'rov eski hisoblagichni o'qib qolmaydi.
+- 2026-11-10 — Slug 3 belgidan qisqa yoki taqiqlangan so'z bo'lsa avtomatik `-biznes` qo'shiladi (`ab` → `ab-biznes`, `admin` → `admin-biznes`); egasi qo'lda kiritsa — xato ko'rsatiladi.
+- 2026-11-10 — "Keldi/Kelmadi" tashrifdan ko'pi bilan 1 soat oldin bosilishi mumkin (mijoz ertaroq kelgan holat uchun); undan oldin — `TOO_EARLY`.
+- 2026-11-10 — Panelda `ignoreLeadTime` sana oralig'i va "hozirdan keyin" cheklovini ham o'chiradi — ega o'tib ketgan tashrifni ham qayd eta olsin (to'qnashuv baribir taqiqlangan).
+- 2026-11-10 — `db` klienti "dangasa" (lazy): import qilinganda bazaga ulanmaydi — bazasiz sahifalar (landing, huquqiy) baza sozlanmagan bo'lsa ham ochiladi.
+- 2026-11-10 — `.env.local` lokal sinov uchun to'ldirildi: lokal PostgreSQL manzili va tasodifiy `SESSION_SECRET`/`CRON_SECRET`/`TELEGRAM_WEBHOOK_SECRET`. Supabase ulanganda manzillar almashtiriladi.

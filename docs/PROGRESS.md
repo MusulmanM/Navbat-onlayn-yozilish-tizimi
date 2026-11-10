@@ -1,6 +1,6 @@
 # Bosqichlar holati
 
-Joriy bosqich: **0 — Tayyorgarlik (bajarildi, ruxsat kutilmoqda)**
+Joriy bosqich: **2 — Biznes sahifasi va onlayn yozilish (jarayonda)**
 Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 0-bosqich: Tayyorgarlik
@@ -16,12 +16,12 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 1-bosqich: Ma'lumotlar bazasi va yadro logika
 
-- [ ] Supabase loyihasi (Frankfurt), `.env.local` ga ulanish satrlari
-- [ ] Prisma sxemasi (5.1) va `booking_no_overlap` migratsiyasi (5.2)
-- [ ] `seed.ts`: demo "Ali Barber" (`demo-barber`), takrorlanmaydigan
-- [ ] `src/lib/`: schedule, time, slots, reminders, phone, money, slug, access, tokens, rate-limit + testlar
-- [ ] `src/lib/env.ts` (env tekshiruvi), `src/config/*`
-- [ ] Bosqich tekshiruvi va commit
+- [ ] Supabase loyihasi (Frankfurt) — egasi qiladi (`docs/SETUP_UZ.md`); hozircha lokal PostgreSQL bilan sinaldi
+- [x] Prisma sxemasi (5.1) va `booking_no_overlap` migratsiyasi (5.2)
+- [x] `seed.ts`: demo "Ali Barber" (`demo-barber`), takrorlanmaydigan
+- [x] `src/lib/`: schedule, time, slots, reminders, phone, money, slug, access, tokens, rate-limit + testlar
+- [x] `src/lib/env.ts` (env tekshiruvi), `src/config/*`
+- [x] Bosqich tekshiruvi va commit
 
 ## 2-bosqich: Biznes sahifasi va onlayn yozilish
 

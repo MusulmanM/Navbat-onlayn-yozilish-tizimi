@@ -17,22 +17,33 @@
     "bot:dev": "tsx scripts/bot-dev.ts",
     "bot:set-webhook": "tsx scripts/set-webhook.ts",
     "cron:dev": "tsx scripts/cron-dev.ts",
-    "secret": "tsx scripts/secret.ts"
+    "secret": "tsx scripts/secret.ts",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
+    "@date-fns/tz": "1.5.0",
+    "@prisma/adapter-pg": "7.10.1",
     "@prisma/client": "7.10.1",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
+    "date-fns": "4.4.0",
+    "grammy": "1.46.0",
+    "jose": "6.2.17",
     "lucide-react": "^1.71.0",
     "next": "16.4.6",
+    "next-intl": "4.14.10",
+    "qrcode": "1.5.4",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "tw-animate-css": "^1.4.0"
+    "sonner": "2.0.8",
+    "tw-animate-css": "^1.4.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "4.3.5",
     "@types/node": "26.6.6",
+    "@types/qrcode": "1.5.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "10.14.0",
