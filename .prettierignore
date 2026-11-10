@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+build
+coverage
+src/generated
+package-lock.json
+next-env.d.ts
+# Verbatim copy of the original spec; keep untouched.
+docs/SPEC.md

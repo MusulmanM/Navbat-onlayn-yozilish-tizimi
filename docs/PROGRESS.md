@@ -1,0 +1,62 @@
+# Bosqichlar holati
+
+Joriy bosqich: **0 — Tayyorgarlik (bajarildi, ruxsat kutilmoqda)**
+Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
+
+## 0-bosqich: Tayyorgarlik
+
+- [x] Node.js va Git tekshirildi (Git bor; Node.js yo'q edi — o'rnatish yo'riqnomasi `README.md` da)
+- [x] Next.js (App Router, TypeScript, Tailwind, ESLint, `src/`), Prettier, shadcn/ui, vitest, Prisma, tsx
+- [x] `package.json` skriptlari: dev, build, start, lint, typecheck, test, db:\*, bot:dev, bot:set-webhook, cron:dev, secret
+- [x] `.env.example`, `.gitignore`, `README.md`, `CLAUDE.md`
+- [x] `docs/SPEC.md` (to'liq nusxa), `docs/PROGRESS.md`, `docs/DECISIONS.md`, `docs/QA.md`
+- [x] Dizayn asoslari: rang tokenlari, Inter shrifti, 16 px / 44 px qoidalari
+- [x] lint, typecheck, test, build xatosiz
+- [x] Commit
+
+## 1-bosqich: Ma'lumotlar bazasi va yadro logika
+
+- [ ] Supabase loyihasi (Frankfurt), `.env.local` ga ulanish satrlari
+- [ ] Prisma sxemasi (5.1) va `booking_no_overlap` migratsiyasi (5.2)
+- [ ] `seed.ts`: demo "Ali Barber" (`demo-barber`), takrorlanmaydigan
+- [ ] `src/lib/`: schedule, time, slots, reminders, phone, money, slug, access, tokens, rate-limit + testlar
+- [ ] `src/lib/env.ts` (env tekshiruvi), `src/config/*`
+- [ ] Bosqich tekshiruvi va commit
+
+## 2-bosqich: Biznes sahifasi va onlayn yozilish
+
+- [ ] next-intl, umumiy layout, header/footer, til almashtirgich
+- [ ] `/b/[slug]` (7.2), slots/days/bookings API (6.2, 6.3)
+- [ ] `/y/[token]` (7.3), `.ics`, bekor qilish
+- [ ] Spamdan himoya, OG rasm, JSON-LD
+- [ ] `notify.ts` (log versiyasi)
+- [ ] `docs/QA.md` ssenariylari, bosqich tekshiruvi va commit
+
+## 3-bosqich: Kirish, onboarding va panel
+
+- [ ] Test bot (@BotFather), bot karkasi, `npm run bot:dev`, webhook route, `/start login_...`, `/id`
+- [ ] Kirish (7.4), sessiya va himoya (10)
+- [ ] Onboarding (7.5)
+- [ ] Panel: Bugun, Kalendar, Yozilishlar, Mijozlar, Xizmatlar, Ustalar, Sozlamalar, QR, Obuna (7.6)
+- [ ] `guards.ts` testlari, bosqich tekshiruvi va commit
+
+## 4-bosqich: Telegram bot to'liq
+
+- [ ] Deep link'lar, buyruqlar, menyu, callback'lar (8.2–8.4)
+- [ ] Mini App (8.5), barcha xabarlar (8.6), xatolar (8.7)
+- [ ] `notify.ts` Telegram versiyasi, eslatmalar, cron endpoint'lari (9), `npm run cron:dev`, `npm run bot:set-webhook`
+- [ ] Bosqich tekshiruvi va commit
+
+## 5-bosqich: Landing, obuna, admin, huquqiy sahifalar
+
+- [ ] Landing (7.1), `/maxfiylik`, `/shartlar` (7.8)
+- [ ] Obuna holatlari, bannerlar, tarif limitlari (6.9), `/panel/obuna`, "Toʻladim"
+- [ ] Admin panel (7.7), obuna ogohlantirishlari (9)
+- [ ] Bosqich tekshiruvi va commit
+
+## 6-bosqich: Internetga chiqarish
+
+- [ ] `docs/SETUP_UZ.md` (17-bo'lim)
+- [ ] GitHub, Vercel (`fra1`), `npm run db:deploy`, asosiy bot, webhook, cron-job.org, admin ID
+- [ ] `Dockerfile`
+- [ ] Production'da `docs/QA.md` ssenariylari, Lighthouse mobile ≥ 85

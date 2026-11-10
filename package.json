@@ -1,0 +1,58 @@
+{
+  "name": "navbat",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
+    "bot:dev": "tsx scripts/bot-dev.ts",
+    "bot:set-webhook": "tsx scripts/set-webhook.ts",
+    "cron:dev": "tsx scripts/cron-dev.ts",
+    "secret": "tsx scripts/secret.ts"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "@prisma/client": "7.10.1",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.5.2",
+    "lucide-react": "^1.71.0",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tw-animate-css": "^1.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "4.3.5",
+    "@types/node": "26.6.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "10.14.0",
+    "eslint-config-next": "16.4.6",
+    "eslint-config-prettier": "10.1.8",
+    "prettier": "3.9.10",
+    "prisma": "7.10.1",
+    "shadcn": "4.23.0",
+    "tailwindcss": "4.3.5",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vite": "7.3.8",
+    "vitest": "4.1.12"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "allowScripts": {
+    "prisma@7.10.1": true,
+    "@prisma/engines@7.10.1": true,
+    "esbuild@0.28.2": true
+  }
+}
