@@ -162,6 +162,21 @@ export function weekdayName(weekday: number, locale: Locale): string {
   return WEEKDAYS[locale][weekday] ?? "";
 }
 
+/** Form used after "в" in Russian ("в среду"); Uzbek uses the plain name. */
+const WEEKDAYS_RU_ACC = [
+  "воскресенье",
+  "понедельник",
+  "вторник",
+  "среду",
+  "четверг",
+  "пятницу",
+  "субботу",
+];
+
+export function weekdayNameAcc(weekday: number, locale: Locale): string {
+  return locale === "ru" ? (WEEKDAYS_RU_ACC[weekday] ?? "") : weekdayName(weekday, locale);
+}
+
 export function weekdayShort(weekday: number, locale: Locale): string {
   return WEEKDAYS_SHORT[locale][weekday] ?? "";
 }

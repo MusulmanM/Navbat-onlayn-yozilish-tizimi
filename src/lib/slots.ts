@@ -142,12 +142,20 @@ export function pickStaff(
   candidates: Array<{ id: string; sortOrder: number }>,
   bookingsPerStaff: Record<string, number>,
 ): string | null {
-  if (candidates.length === 0) return null;
-  const sorted = [...candidates].sort((a, b) => {
-    const load = (bookingsPerStaff[a.id] ?? 0) - (bookingsPerStaff[b.id] ?? 0);
-    if (load !== 0) return load;
-    if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
-    return a.id.localeCompare(b.id);
-  });
-  return sorted[0].id;
+  return rankStaff(candidates, bookingsPerStaff)[0] ?? null;
+}
+
+/** All candidates in pickStaff order (used to retry with the next one on a conflict). */
+export function rankStaff(
+  candidates: Array<{ id: string; sortOrder: number }>,
+  bookingsPerStaff: Record<string, number>,
+): string[] {
+  return [...candidates]
+    .sort((a, b) => {
+      const load = (bookingsPerStaff[a.id] ?? 0) - (bookingsPerStaff[b.id] ?? 0);
+      if (load !== 0) return load;
+      if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
+      return a.id.localeCompare(b.id);
+    })
+    .map((c) => c.id);
 }

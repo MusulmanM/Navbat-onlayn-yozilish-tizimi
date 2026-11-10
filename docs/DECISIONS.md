@@ -29,3 +29,18 @@ Format: sana — qaror — sabab.
 - 2026-11-10 — Panelda `ignoreLeadTime` sana oralig'i va "hozirdan keyin" cheklovini ham o'chiradi — ega o'tib ketgan tashrifni ham qayd eta olsin (to'qnashuv baribir taqiqlangan).
 - 2026-11-10 — `db` klienti "dangasa" (lazy): import qilinganda bazaga ulanmaydi — bazasiz sahifalar (landing, huquqiy) baza sozlanmagan bo'lsa ham ochiladi.
 - 2026-11-10 — `.env.local` lokal sinov uchun to'ldirildi: lokal PostgreSQL manzili va tasodifiy `SESSION_SECRET`/`CRON_SECRET`/`TELEGRAM_WEBHOOK_SECRET`. Supabase ulanganda manzillar almashtiriladi.
+
+## 2-bosqich
+
+- 2026-11-10 — `cacheComponents` o'chirildi (klassik server-render) — panelning hamma sahifasi cookie va bazaga bog'liq; Cache Components har bir murojaatni maxsus o'rashni talab qiladi, foydasi esa bu loyihada kichik. Sahifalar baribir serverda tez chiziladi.
+- 2026-11-10 — Brauzer tili (`Accept-Language`) hisobga olinmaydi, faqat tanlangan til cookie'da eslab qolinadi — asosiy til o'zbek; ko'p telefonlar ruscha sozlangan bo'lsa ham, mijoz o'zbekcha sahifani ko'radi va xohlasa RU ni bosadi.
+- 2026-11-10 — Yozilish qadamlari to'liq ekranli oynada (telefonda) / markazdagi oynada (kompyuterda); "Kun" va "Vaqt" bitta ekranda (kun tanlansa vaqtlar pastda chiqadi) — kamroq bosish. Har qadam brauzer tarixiga yoziladi, telefonning "orqaga" tugmasi bir qadam orqaga qaytaradi.
+- 2026-11-10 — Ommaviy sahifada toast kutubxonasi ishlatilmaydi, xatolar oynaning o'zida (role="alert") ko'rsatiladi — sahifa JS hajmi kichik bo'lsin. Toast panelda ishlatiladi.
+- 2026-11-10 — Brauzerga faqat kerakli tarjima bo'limlari yuboriladi (`pickMessages`) — ommaviy sahifa yengil.
+- 2026-11-10 — Mijoz ismi va telefoni brauzerda (localStorage) eslab qolinadi — keyingi safar avtomatik to'ldiriladi. Telegram Mini App'da ism Telegram'dan olinadi.
+- 2026-11-10 — Qayta yozilgan mijozning bazadagi ismi o'zgartirilmaydi (biznes uni tahrirlagan bo'lishi mumkin); faqat Telegram ID qo'shiladi.
+- 2026-11-10 — "Farqi yo'q" tanlanganda tasdiq ekranida qaysi usta tayinlangani ko'rsatiladi (API javobida `staffName`).
+- 2026-11-10 — JSON-LD `dangerouslySetInnerHTML` orqali (Next.js rasmiy usuli), `<` belgisi `<` ga almashtiriladi — foydalanuvchi matni teg yopa olmaydi.
+- 2026-11-10 — OG rasm uchun Inter shrifti Google Fonts'dan faqat kerakli harflar bilan yuklanadi; yuklanmasa standart shrift ishlatiladi.
+- 2026-11-10 — `telegram-web-app.js` faqat `?src=tg` bo'lganda yuklanadi — oddiy mijozlar uchun ortiqcha skript yo'q.
+- 2026-11-10 — "Ish vaqti" bloki `<details>` bilan (JS'siz ochiladi/yopiladi); "Hozir ochiq" holati tanaffus va bayram kunlarini hisobga oladi.

@@ -30,6 +30,14 @@
   --color-destructive: var(--destructive);
   --color-pending: var(--pending);
   --color-pending-foreground: var(--pending-foreground);
+  --color-avatar-0: var(--avatar-0);
+  --color-avatar-1: var(--avatar-1);
+  --color-avatar-2: var(--avatar-2);
+  --color-avatar-3: var(--avatar-3);
+  --color-avatar-4: var(--avatar-4);
+  --color-avatar-5: var(--avatar-5);
+  --color-avatar-6: var(--avatar-6);
+  --color-avatar-7: var(--avatar-7);
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-accent-foreground: var(--accent-foreground);
@@ -100,6 +108,16 @@
   --sidebar-accent-foreground: #115e59;
   --sidebar-border: #e2e8f0;
   --sidebar-ring: #0f766e;
+
+  /* Initial-letter avatars: white text on each is ≥ 4.5:1. */
+  --avatar-0: #0f766e;
+  --avatar-1: #0369a1;
+  --avatar-2: #4338ca;
+  --avatar-3: #7c3aed;
+  --avatar-4: #a21caf;
+  --avatar-5: #be123c;
+  --avatar-6: #b45309;
+  --avatar-7: #047857;
 }
 
 @layer base {

@@ -1,6 +1,6 @@
 # Bosqichlar holati
 
-Joriy bosqich: **2 — Biznes sahifasi va onlayn yozilish (jarayonda)**
+Joriy bosqich: **3 — Kirish, onboarding va panel (jarayonda)**
 Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 0-bosqich: Tayyorgarlik
@@ -25,12 +25,12 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 2-bosqich: Biznes sahifasi va onlayn yozilish
 
-- [ ] next-intl, umumiy layout, header/footer, til almashtirgich
-- [ ] `/b/[slug]` (7.2), slots/days/bookings API (6.2, 6.3)
-- [ ] `/y/[token]` (7.3), `.ics`, bekor qilish
-- [ ] Spamdan himoya, OG rasm, JSON-LD
-- [ ] `notify.ts` (log versiyasi)
-- [ ] `docs/QA.md` ssenariylari, bosqich tekshiruvi va commit
+- [x] next-intl, umumiy layout, header/footer, til almashtirgich
+- [x] `/b/[slug]` (7.2), slots/days/bookings API (6.2, 6.3)
+- [x] `/y/[token]` (7.3), `.ics`, bekor qilish
+- [x] Spamdan himoya, OG rasm, JSON-LD
+- [x] `notify.ts` (log versiyasi; bot tokeni bo'lsa Telegram versiyasi)
+- [x] `docs/QA.md` ssenariylari, bosqich tekshiruvi va commit
 
 ## 3-bosqich: Kirish, onboarding va panel
 
