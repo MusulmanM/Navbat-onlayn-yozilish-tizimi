@@ -70,3 +70,13 @@ Format: sana — qaror — sabab.
 - 2026-11-11 — 24 soatlik eslatmadagi "Bugun/Ertaga" so'zi yuborish paytida hisoblanadi; mijoz "Kelaman" bosgan bo'lsa, eslatmada qayta so'ralmaydi.
 - 2026-11-11 — Bot va cron haqiqiy Telegram'siz testlanadi: grammY transformer soxta API sifatida barcha chaqiruvlarni yozib oladi.
 - 2026-11-11 — `npm run cron:dev` ikkala endpoint'ni har daqiqada chaqiradi; boshqa manzil uchun `CRON_TARGET_URL`.
+
+## 5-bosqich
+
+- 2026-11-11 — Landing to'liq serverda chiziladi, telefon maketi CSS bilan (rasm yuklanmaydi), savol-javoblar `<details>` bilan — JavaScript deyarli yo'q.
+- 2026-11-11 — "To'ladim" bosilganda tanlangan tarif adminlarga yuboriladi va `paymentClaimedAt` yoziladi; admin to'lov qo'shganda bu belgi va `lastBillingNotice` tozalanadi.
+- 2026-11-11 — Admin biznes kartasiga "Sinov tugash sanasi" qo'shildi (topshiriqda yo'q edi) — obuna tugashini sinash va kerak bo'lsa sinovni uzaytirish uchun.
+- 2026-11-11 — Admin statistikasida "Muddati o'tgan" = GRACE + EXPIRED; MRR = ACTIVE bizneslar tariflari yig'indisi; demo bizneslar hisobga olinmaydi.
+- 2026-11-11 — Admin bo'lmagan foydalanuvchi `/admin` da 404 ko'radi (sahifa borligi ham bildirilmaydi).
+- 2026-11-11 — `sitemap.xml` dinamik (bazadan): faqat nashr qilingan, bloklanmagan, obunasi faol, demo bo'lmagan bizneslar; ikkala til `alternates` bilan.
+- 2026-11-11 — Huquqiy sahifalar matni `messages/*.json` da, tepasida "Loyiha matni. Yurist tomonidan tekshirilishi kerak." yozuvi.

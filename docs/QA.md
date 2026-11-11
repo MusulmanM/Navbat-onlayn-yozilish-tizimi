@@ -58,3 +58,16 @@ Oldin: `.env.local` da test bot tokeni, `REMINDER_TEST_MODE="true"`; uchta termi
 6. **Buyruqlar:** `/yozilishlarim`, `/bugun` (ega uchun), `/til` → 🇷🇺 → bot ruscha javob beradi, `/yordam`, `/id`.
 7. **Mini App:** bepul tunnel (`cloudflared tunnel --url http://localhost:3000`) manzilini `NEXT_PUBLIC_APP_URL` ga qo'ying, dev serverni qayta ishga tushiring → botda `/start biz_demo-barber` → "📅 Yozilish" → sahifa Telegram ichida ochiladi (header yo'q), ism o'zi to'ldirilgan, Android "orqaga" bir qadam orqaga qaytaradi, yakunda "Yopish" va botdan darhol tasdiq xabari.
 8. **Bot bloklangan:** botni Telegram'da bloklang va yozilish yarating → eslatma yuborilmaydi, xato yo'q; botga qayta yozsangiz yana ishlaydi.
+
+## 5-bosqich: Landing, obuna, admin
+
+Oldin: `.env.local` da `ADMIN_TELEGRAM_IDS` ga o'z ID'ingiz (botga `/id` yozing).
+
+1. **Landing:** http://localhost:3000 — telefonda: sarlavha, ikki tugma ("14 kun bepul boshlash" → kirish, "Demoni koʻrish" → demo), telefon maketi, muammolar, 3 qadam, 6 imkoniyat, narxlar (Start 99 000, Pro 199 000), savollar (bosilsa ochiladi), yakuniy tugma, footer. `/ru` — ruscha.
+2. **Huquqiy:** footer'dagi "Maxfiylik siyosati" va "Foydalanish shartlari" — tepada sariq "Loyiha matni…" yozuvi.
+3. **Obuna:** panel → "Yana" → "Obuna": holat, kun qoldi, tariflar, to'lov ko'rsatmasi (`PAYMENT_INSTRUCTIONS_UZ`), "Toʻladim" → "Rahmat!…", adminga Telegram xabari.
+4. **Admin:** http://localhost:3000/admin — statistika, "Toʻlov qilganini aytganlar". "Bizneslar" → biznesni oching.
+5. **Obuna tugashi:** admin kartasida "Sinov tugash sanasi"ni 10 kun oldingi sanaga qo'yib saqlang → `/b/<slug>` da "Onlayn yozilish vaqtincha mavjud emas. Qoʻngʻiroq qiling: …", panelda qizil banner.
+6. **To'lov:** "Toʻlov qoʻshish" (Pro, 199 000, 30 kun, Click) → "Toʻlovni saqlash" → sahifada yozilish yana ishlaydi, egaga "✅ Toʻlov qabul qilindi!" keladi, obuna sahifasida to'lov tarixi.
+7. **Ruxsat:** admin bo'lmagan akkaunt bilan `/admin` → "Sahifa topilmadi".
+8. **Limit:** Start tarifida ikkinchi faol usta qo'shib bo'lmaydi → "Tarif boʻyicha 1 ta faol usta mumkin" va "Tarifni oshirish".

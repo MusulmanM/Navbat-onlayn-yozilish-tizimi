@@ -1,6 +1,6 @@
 # Bosqichlar holati
 
-Joriy bosqich: **5 — Landing, obuna, admin, huquqiy sahifalar (jarayonda)**
+Joriy bosqich: **6 — Internetga chiqarish (jarayonda)**
 Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 0-bosqich: Tayyorgarlik
@@ -54,10 +54,11 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 5-bosqich: Landing, obuna, admin, huquqiy sahifalar
 
-- [ ] Landing (7.1), `/maxfiylik`, `/shartlar` (7.8)
-- [ ] Obuna holatlari, bannerlar, tarif limitlari (6.9), `/panel/obuna`, "Toʻladim"
-- [ ] Admin panel (7.7), obuna ogohlantirishlari (9)
-- [ ] Bosqich tekshiruvi va commit
+- [x] Landing (7.1), `/maxfiylik`, `/shartlar` (7.8), sitemap.xml, robots.txt
+- [x] Obuna holatlari, bannerlar, tarif limitlari (6.9), `/panel/obuna`, "Toʻladim"
+- [x] Admin panel (7.7): statistika, bizneslar (filtr, qidiruv), to'lov qo'shish, bloklash, TOP, sinov sanasi
+- [x] Obuna ogohlantirishlari (9) — 4-bosqich cron'ida
+- [x] Brauzerda sinov: sinov tugatildi → sahifada yozilish o'chdi → to'lov → yana ishlaydi; bosqich tekshiruvi va commit
 
 ## 6-bosqich: Internetga chiqarish
 
