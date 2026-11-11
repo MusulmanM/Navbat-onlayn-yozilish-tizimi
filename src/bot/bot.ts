@@ -1,5 +1,5 @@
 // grammY bot: the same handlers run in webhook mode (production) and long polling (local).
-import { Bot } from "grammy";
+import { Bot, type BotConfig } from "grammy";
 import type { BotContext } from "@/bot/context";
 import { registerCallbacks } from "@/bot/handlers/callbacks";
 import { registerCommands } from "@/bot/handlers/commands";
@@ -9,8 +9,9 @@ import { localeFromTelegram, type Locale } from "@/config/locales";
 import { db } from "@/lib/db";
 import { requireEnv } from "@/lib/env";
 
-export function createBot(token: string): Bot<BotContext> {
-  const bot = new Bot<BotContext>(token);
+/** `config` lets tests pass botInfo so no getMe call is needed. */
+export function createBot(token: string, config?: BotConfig<BotContext>): Bot<BotContext> {
+  const bot = new Bot<BotContext>(token, config);
 
   // Remember every chat (spec 8.1); a message from a user un-blocks them.
   bot.use(async (ctx, next) => {

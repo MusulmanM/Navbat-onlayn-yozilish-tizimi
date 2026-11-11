@@ -45,3 +45,16 @@ Oldin: test bot yaratilgan, `.env.local` da `TELEGRAM_BOT_TOKEN` va `NEXT_PUBLIC
 11. **QR-poster:** "Chop etish" → faqat poster chiqadi (menyular yo'q), A5/A4.
 12. **Chiqish:** "Yana" → "Barcha qurilmalardan chiqish" → boshqa brauzerdagi kirish ham bekor bo'ladi.
 13. **Ruxsat:** boshqa Telegram akkaunt bilan kirgan ega birinchi biznesning yozilishlarini ko'ra olmaydi (avtomatik test: `src/server/isolation.int.test.ts`).
+
+## 4-bosqich: Telegram bot
+
+Oldin: `.env.local` da test bot tokeni, `REMINDER_TEST_MODE="true"`; uchta terminal: `npm run dev`, `npm run bot:dev`, `npm run cron:dev`.
+
+1. **Eslatmalar:** saytda yozilib, tasdiq ekranida "📲 Telegram orqali eslatma olish" → botda "Start". "✅ Siz yozildingiz!" keladi. Test rejimida 1 daqiqadan keyin 24 soatlik, 2 daqiqadan keyin 2 soatlik eslatma keladi.
+2. **"Kelaman":** eslatmadagi "✅ Ha, kelaman" → xabar oxirida "✅ Rahmat! Sizni kutamiz.", tugmalar yo'qoladi; panelda mijoz yonida ✅ belgisi.
+3. **Bekor qilish:** "❌ Bekor qilish" → "Rostdan ham bekor qilasizmi?" → "Ha, bekor qilaman" → panelda "Mijoz bekor qildi", egaga xabar keladi, vaqt saytda yana bo'sh.
+4. **Tasdiqlash:** Sozlamalarda "Avtomatik tasdiqlash"ni o'chiring, saytdan yoziling → egaga "🆕 Yangi yozilish — tasdiq kutilmoqda" + "✅ Tasdiqlash" → mijozga "✅ … yozilishingizni tasdiqladi!".
+5. **Ekranlash:** ismi `<b>test</b>` bo'lgan mijoz bilan yoziling → egaga kelgan xabarda ism aynan `<b>test</b>` ko'rinishida (qalin emas).
+6. **Buyruqlar:** `/yozilishlarim`, `/bugun` (ega uchun), `/til` → 🇷🇺 → bot ruscha javob beradi, `/yordam`, `/id`.
+7. **Mini App:** bepul tunnel (`cloudflared tunnel --url http://localhost:3000`) manzilini `NEXT_PUBLIC_APP_URL` ga qo'ying, dev serverni qayta ishga tushiring → botda `/start biz_demo-barber` → "📅 Yozilish" → sahifa Telegram ichida ochiladi (header yo'q), ism o'zi to'ldirilgan, Android "orqaga" bir qadam orqaga qaytaradi, yakunda "Yopish" va botdan darhol tasdiq xabari.
+8. **Bot bloklangan:** botni Telegram'da bloklang va yozilish yarating → eslatma yuborilmaydi, xato yo'q; botga qayta yozsangiz yana ishlaydi.

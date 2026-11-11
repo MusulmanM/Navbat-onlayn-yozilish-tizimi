@@ -1,6 +1,6 @@
 # Bosqichlar holati
 
-Joriy bosqich: **4 — Telegram bot to'liq (jarayonda)**
+Joriy bosqich: **5 — Landing, obuna, admin, huquqiy sahifalar (jarayonda)**
 Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 0-bosqich: Tayyorgarlik
@@ -45,10 +45,12 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 4-bosqich: Telegram bot to'liq
 
-- [ ] Deep link'lar, buyruqlar, menyu, callback'lar (8.2–8.4)
-- [ ] Mini App (8.5), barcha xabarlar (8.6), xatolar (8.7)
-- [ ] `notify.ts` Telegram versiyasi, eslatmalar, cron endpoint'lari (9), `npm run cron:dev`, `npm run bot:set-webhook`
-- [ ] Bosqich tekshiruvi va commit
+- [x] Deep link'lar, buyruqlar, menyu, callback'lar (8.2–8.4)
+- [x] Mini App (8.5): `?src=tg`, `initData` tekshiruvi, BackButton, "Yopish"
+- [x] Barcha xabarlar (8.6), xatolar (8.7): 403 → bloklangan, 429 → qayta urinish
+- [x] `notify.ts` Telegram versiyasi, eslatmalar, cron endpoint'lari (9), `npm run cron:dev`, `npm run bot:set-webhook`, `REMINDER_TEST_MODE`
+- [x] Bot va cron uchun integratsiya testlari (soxta Telegram API bilan)
+- [ ] Haqiqiy Telegram'da qo'lda sinov (test bot + tunnel) — egasi qiladi, `docs/QA.md`
 
 ## 5-bosqich: Landing, obuna, admin, huquqiy sahifalar
 

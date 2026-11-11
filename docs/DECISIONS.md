@@ -59,3 +59,14 @@ Format: sana — qaror — sabab.
 - 2026-11-11 — Dam olish/bayram kunlari butun kunlar bilan kiritiladi (biznes vaqt zonasida 00:00 dan keyingi kun 00:00 gacha).
 - 2026-11-11 — Ruxsat (guards) testlari ikki qismli: toza unit testlar har doim, bazali izolyatsiya testlari `TEST_DATABASE_URL` berilganda (alohida, tashlab yuboriladigan baza).
 - 2026-11-11 — Server action'lar `{ ok, data }` qaytaradi; muvaffaqiyat yoki xato kerak bo'lgan joylarda `runOk()` (natija `null` bo'lsa ham muvaffaqiyatni yo'qotmaydi — brauzer sinovida topilgan xato).
+
+## 4-bosqich
+
+- 2026-11-11 — Cron eslatmalarni `UPDATE … FOR UPDATE SKIP LOCKED` bilan atomar egallaydi; 10 daqiqadan beri `SENDING` da qotganlar qaytadan navbatga tushadi. Uch parallel ishga tushirishda ham xabar bir marta ketishi test bilan tasdiqlangan.
+- 2026-11-11 — Telegram 429 (limit) bo'lsa eslatma `retry_after` dan keyin qayta yuboriladi va urinishlar soni kamaymaydi; 403 bo'lsa chat "bloklangan" deb belgilanadi va eslatma bekor qilinadi.
+- 2026-11-11 — Bot tokeni sozlanmagan bo'lsa cron xabar yubormaydi va eslatmalarni navbatda qoldiradi, kunlik hisobotni "yuborildi" deb belgilamaydi.
+- 2026-11-11 — Kunlik hisobot bir kunda bir marta: `daily:<biznes>:<sana>` belgisi `RateLimit` jadvalida (alohida jadval kerak emas). Obuna ogohlantirishlari `Business.lastBillingNotice` bilan (3 kun, 1 kun, tugagan).
+- 2026-11-11 — "Tugaganda" xabari obuna haqiqatan o'chganda yuboriladi (3 kunlik grace tugagach) — matn "Onlayn yozilish vaqtincha o'chirildi" deydi, bu shu paytga mos.
+- 2026-11-11 — 24 soatlik eslatmadagi "Bugun/Ertaga" so'zi yuborish paytida hisoblanadi; mijoz "Kelaman" bosgan bo'lsa, eslatmada qayta so'ralmaydi.
+- 2026-11-11 — Bot va cron haqiqiy Telegram'siz testlanadi: grammY transformer soxta API sifatida barcha chaqiruvlarni yozib oladi.
+- 2026-11-11 — `npm run cron:dev` ikkala endpoint'ni har daqiqada chaqiradi; boshqa manzil uchun `CRON_TARGET_URL`.
