@@ -99,9 +99,9 @@ function Shell({
   const publicUrl = `${locale === "ru" ? "/ru" : ""}/b/${slug}`;
 
   return (
-    <div className="flex min-h-dvh bg-muted/40">
+    <div className="flex min-h-dvh bg-muted/40 print:bg-white">
       {/* Desktop sidebar */}
-      <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 flex-col border-r bg-background lg:flex">
+      <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 flex-col border-r bg-background lg:flex print:hidden">
         <div className="flex h-16 items-center gap-2 border-b px-4">
           <BrandMark />
           <div className="min-w-0">
@@ -183,7 +183,7 @@ function Shell({
 
       <div className="flex min-w-0 flex-1 flex-col">
         {/* Mobile top bar */}
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur lg:hidden">
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur lg:hidden print:hidden">
           <BrandMark className="size-7" />
           <p className="min-w-0 flex-1 truncate font-semibold">{businessName}</p>
           <a
@@ -197,10 +197,10 @@ function Shell({
           </a>
         </header>
 
-        {banner}
+        <div className="print:hidden">{banner}</div>
         <main
           id="main"
-          className="mx-auto w-full max-w-6xl flex-1 px-4 pt-5 pb-28 lg:px-8 lg:pb-10"
+          className="mx-auto w-full max-w-6xl flex-1 px-4 pt-5 pb-28 lg:px-8 lg:pb-10 print:max-w-none print:p-0"
         >
           {children}
         </main>
@@ -208,7 +208,7 @@ function Shell({
         {/* Mobile bottom navigation (spec 7.6) */}
         <nav
           aria-label={t("menu")}
-          className="fixed inset-x-0 bottom-0 z-40 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
+          className="fixed inset-x-0 bottom-0 z-40 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden print:hidden"
         >
           <ul className="grid h-16 grid-cols-5">
             <MobileTab

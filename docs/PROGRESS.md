@@ -1,7 +1,6 @@
 # Bosqichlar holati
 
-Joriy bosqich: **3 — Kirish, onboarding va panel (jarayonda, to'xtatilgan)**
-Keyingi qadam: onboarding, so'ng panelning qolgan sahifalari. Messages: `messages/*.json` da `Services`, `StaffPage`, `Schedule`, `Settings`, `Qr`, `Billing`, `Onboarding` bo'limlari hali yo'q.
+Joriy bosqich: **4 — Telegram bot to'liq (jarayonda)**
 Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 0-bosqich: Tayyorgarlik
@@ -33,20 +32,16 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 - [x] `notify.ts` (log versiyasi; bot tokeni bo'lsa Telegram versiyasi)
 - [x] `docs/QA.md` ssenariylari, bosqich tekshiruvi va commit
 
-## 3-bosqich: Kirish, onboarding va panel (jarayonda — 2026-11-10 da to'xtatildi)
+## 3-bosqich: Kirish, onboarding va panel
 
-- [ ] Test bot (@BotFather) — egasi qiladi
-- [x] Bot: `src/bot/` (start/login/biz/bk deep link'lar, buyruqlar, callback'lar, matnlar uz/ru), `npm run bot:dev`, webhook route, `npm run bot:set-webhook`
-- [x] Kirish (7.4): login token API'lari, `/login` sahifasi (QR, taymer, so'rov), sessiya (jose), `proxy.ts` himoyasi, guards
-- [x] Panel qobig'i: yon menyu / pastki menyu, obuna va nashr bannerlari, "Yozilish qo'shish" oynasi
-- [x] `/panel` — Bugun (statistika, tasdiq kutayotganlar, bugungi ro'yxat, tezkor amallar)
-- [x] `/panel/kalendar` — kun/hafta, ustunlar, tafsilotlar, vaqtni ko'chirish, izoh (yozildi, brauzerda hali sinalmagan)
-- [ ] Onboarding (7.5) — 5 qadam
-- [ ] `/panel/yozilishlar` (filtrlar, sahifalash)
-- [ ] `/panel/mijozlar` va mijoz sahifasi
-- [ ] `/panel/xizmatlar`, `/panel/ustalar` (dam olish kunlari bilan)
-- [ ] `/panel/sozlamalar` (5 tab), `/panel/qr`, `/panel/yana`
-- [ ] `guards.ts` testlari, brauzerda to'liq sinov, bosqich tekshiruvi va commit
+- [ ] Test bot (@BotFather) — egasi qiladi (`docs/SETUP_UZ.md`)
+- [x] Bot: `src/bot/` (deep link'lar, buyruqlar, callback'lar, uz/ru matnlar), `npm run bot:dev`, webhook route, `npm run bot:set-webhook`
+- [x] Kirish (7.4): login token API'lari, `/login` (QR, taymer, avtomatik tekshirish), sessiya (jose), `proxy.ts`, guards
+- [x] Onboarding (7.5) — 5 qadam, har qadam saqlanadi
+- [x] Panel: Bugun, Kalendar (kun/hafta, tafsilotlar, ko'chirish), Yozilishlar, Mijozlar + mijoz kartasi, Xizmatlar, Ustalar (+dam olish), Sozlamalar (5 tab), QR-poster, "Yana"
+- [x] "Yozilish qo'shish" oynasi (qidiruv/yangi mijoz, ish vaqtidan tashqari, mijozga xabar matni)
+- [x] `guards` testlari + bazali izolyatsiya testlari
+- [x] Brauzerda sinov (360 px): login → onboarding → panel; bosqich tekshiruvi va commit
 
 ## 4-bosqich: Telegram bot to'liq
 

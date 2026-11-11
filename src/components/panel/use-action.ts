@@ -44,5 +44,22 @@ export function useAction() {
     [errorText, ta],
   );
 
-  return { run, pending, errorText };
+  /** Same as run(), but returns true/false — for actions whose data is null on success. */
+  const runOk = useCallback(
+    async <T>(
+      call: () => Promise<ActionResult<T>>,
+      options: Parameters<typeof run>[1] = {},
+    ): Promise<boolean> => {
+      let success = false;
+      await run(async () => {
+        const result = await call();
+        success = result.ok;
+        return result;
+      }, options);
+      return success;
+    },
+    [run],
+  );
+
+  return { run, runOk, pending, errorText };
 }

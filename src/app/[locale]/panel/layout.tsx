@@ -46,7 +46,10 @@ export default async function PanelLayout({ children, params }: LayoutProps<"/[l
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
   const ctx = await requireBusiness();
-  if (ctx.business.onboardingStep !== null) redirect({ href: "/onboarding", locale });
+  // Steps 1–4 must be finished first; at step 5 the panel (e.g. QR poster) is already usable.
+  if (ctx.business.onboardingStep !== null && ctx.business.onboardingStep < 5) {
+    redirect({ href: "/onboarding", locale });
+  }
 
   const now = new Date();
   const [pending, options, admin, messages, t] = await Promise.all([

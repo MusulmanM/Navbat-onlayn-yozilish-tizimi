@@ -27,3 +27,21 @@ Oldin: baza ulangan va `npm run db:seed` bajarilgan bo'lsin (demo biznes `demo-b
 12. **Havola ulashish:** Telegram'da `https://<sayt>/b/demo-barber` yuborilsa, nom, kategoriya va manzil yozilgan rasm chiqadi (faqat internetga chiqqandan keyin).
 13. **?s= havola:** `/b/demo-barber?s=demo-service-1` — sahifa ochilishi bilan "Soch olish" tanlangan holda yozilish oynasi ochiladi.
 14. **Noma'lum biznes:** `/b/yoq-biznes` → "Sahifa topilmadi" (404).
+
+## 3-bosqich: Kirish, onboarding va panel
+
+Oldin: test bot yaratilgan, `.env.local` da `TELEGRAM_BOT_TOKEN` va `NEXT_PUBLIC_TELEGRAM_BOT_USERNAME` bor, `npm run dev` va boshqa terminalda `npm run bot:dev` ishlayapti.
+
+1. **Kirish:** http://localhost:3000/login → "Telegram orqali kirish" → "Telegramni ochish" → botda "Start" → "✅ Tasdiqlash". Sayt o'zi yangilanib, onboarding'ga o'tadi. Kompyuterda QR kodni telefon bilan skanerlash ham ishlaydi. 10 daqiqadan keyin "Havola muddati tugadi" chiqadi.
+2. **Rad etish:** yangi login'da botda "❌ Rad etish" → saytda "Kirish rad etildi".
+3. **Onboarding:** 1-qadamda bo'sh "Davom etish" → maydonlar ostida qizil izoh. To'ldiring → 2-qadam (ish vaqti: kunni o'chirish, tanaffus qo'shish, "Barcha kunlarga nusxalash") → 3-qadam (tayyor xizmatlar, narx/vaqtni o'zgartiring, keraksizini ✕) → 4-qadam (usta = sizning ismingiz) → 5-qadam (havola, QR, "Sahifani nashr qilish"). Sahifani yangilasangiz ham ma'lumot yo'qolmaydi.
+4. **Bugun:** statistika kartochkalari; yozilish yo'q bo'lsa "Bugun yozilishlar yoʻq" va 2 ta tugma.
+5. **➕ Yozilish qo'shish:** yangi mijoz (ism + telefon) → xizmat → vaqt → "Saqlash" → "Assalomu alaykum! Siz … yozildingiz" matni va "Nusxalash".
+6. **Kalendar:** yozilish bloki ko'rinadi; bosilsa tafsilotlar; "Vaqtini oʻzgartirish" → yangi vaqt → blok ko'chadi. Bo'sh joy bosilsa shu usta va vaqt bilan "Yozilish qo'shish" ochiladi. "Hafta" — 7 kun.
+7. **Statuslar:** tashrif vaqti kelganda "Keldi"/"Kelmadi"; "Bekor qilish" → sabab → bekor bo'ladi va vaqt bo'shaydi.
+8. **Ommaviy sahifadan yozilish** (2-bosqich) → panelda darhol ko'rinadi.
+9. **Xizmatlar / Ustalar:** qo'shish, tahrirlash, ↑↓ tartib, arxivlash. Ustaga "O'zining jadvali" va dam olish kuni qo'shilsa, o'sha kunlar sahifada band bo'ladi.
+10. **Sozlamalar:** 5 tab; "Havola va QR" da sahifani yashirish → `/b/<slug>` 404 beradi; qayta nashr qilish.
+11. **QR-poster:** "Chop etish" → faqat poster chiqadi (menyular yo'q), A5/A4.
+12. **Chiqish:** "Yana" → "Barcha qurilmalardan chiqish" → boshqa brauzerdagi kirish ham bekor bo'ladi.
+13. **Ruxsat:** boshqa Telegram akkaunt bilan kirgan ega birinchi biznesning yozilishlarini ko'ra olmaydi (avtomatik test: `src/server/isolation.int.test.ts`).

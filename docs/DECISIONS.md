@@ -44,3 +44,18 @@ Format: sana — qaror — sabab.
 - 2026-11-10 — OG rasm uchun Inter shrifti Google Fonts'dan faqat kerakli harflar bilan yuklanadi; yuklanmasa standart shrift ishlatiladi.
 - 2026-11-10 — `telegram-web-app.js` faqat `?src=tg` bo'lganda yuklanadi — oddiy mijozlar uchun ortiqcha skript yo'q.
 - 2026-11-10 — "Ish vaqti" bloki `<details>` bilan (JS'siz ochiladi/yopiladi); "Hozir ochiq" holati tanaffus va bayram kunlarini hisobga oladi.
+
+## 3-bosqich
+
+- 2026-11-11 — Bot to'liq shu bosqichda yozildi (login uchun bot baribir kerak edi): deep link'lar, buyruqlar, callback'lar, Telegram bildirishnomalari. 4-bosqichda cron va eslatmalar qo'shiladi.
+- 2026-11-11 — Botning asosiy menyusi doimiy "reply" klaviatura (pastdagi tugmalar); "⚙️ Panelni ochish" URL tugmasi alohida xabarda — Telegram reply klaviaturada URL tugmani qo'llamaydi.
+- 2026-11-11 — Panelda ega o'zi qo'shgan yozilish (manba PANEL) haqida egaga Telegram xabari yuborilmaydi — u buni o'zi qildi.
+- 2026-11-11 — Login'dan keyin `?next=` faqat panel/onboarding/admin ichidagi yo'lga ruxsat beradi (boshqa saytga yo'naltirib bo'lmaydi).
+- 2026-11-11 — Onboarding 5-qadamida panel ochiq (QR-poster chop etish uchun); 1–4 qadam tugamaguncha panel onboarding'ga qaytaradi. `?step=` orqali oldingi qadamga qaytish mumkin.
+- 2026-11-11 — Onboarding'da ro'yxatdan olib tashlangan xizmat/usta: yozilishlari bo'lsa arxivlanadi, bo'lmasa o'chiriladi (5.5-bo'lim).
+- 2026-11-11 — Kalendar: 1 soat = 64 px, bo'sh joy bosilsa vaqt 15 daqiqaga yaxlitlanadi; tanlangan vaqt ish vaqtidan tashqarida bo'lsa "Ish vaqtidan tashqari" o'zi yoqiladi. Telefonda bitta ustun + usta tanlash tugmalari.
+- 2026-11-11 — Mijoz qidiruvi SQL `translate()` bilan: `ʻ ʼ ‘ ’ ' \`` bir xil hisoblanadi ("Go'zal" → "Goʻzal" topiladi), registrga bog'liq emas.
+- 2026-11-11 — Yozilishlar filtri va mijozlar qidiruvi oddiy GET forma (JavaScript'siz ham ishlaydi, filtr havolada saqlanadi).
+- 2026-11-11 — Dam olish/bayram kunlari butun kunlar bilan kiritiladi (biznes vaqt zonasida 00:00 dan keyingi kun 00:00 gacha).
+- 2026-11-11 — Ruxsat (guards) testlari ikki qismli: toza unit testlar har doim, bazali izolyatsiya testlari `TEST_DATABASE_URL` berilganda (alohida, tashlab yuboriladigan baza).
+- 2026-11-11 — Server action'lar `{ ok, data }` qaytaradi; muvaffaqiyat yoki xato kerak bo'lgan joylarda `runOk()` (natija `null` bo'lsa ham muvaffaqiyatni yo'qotmaydi — brauzer sinovida topilgan xato).

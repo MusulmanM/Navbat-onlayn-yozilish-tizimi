@@ -35,15 +35,15 @@ export function BookingActions({
 }) {
   const t = useTranslations("BookingActions");
   const ts = useTranslations("Status");
-  const { run, pending } = useAction();
+  const { runOk, pending } = useAction();
   const [ask, setAsk] = useState<"cancel" | "reject" | null>(null);
   const [reason, setReason] = useState("");
 
   const change = async (to: BookingStatus, success: string, withReason?: string) => {
-    const ok = await run(() => setBookingStatusAction({ bookingId, to, reason: withReason }), {
+    const ok = await runOk(() => setBookingStatusAction({ bookingId, to, reason: withReason }), {
       success,
     });
-    if (ok !== null) {
+    if (ok) {
       setAsk(null);
       setReason("");
       onDone?.();
