@@ -1,17 +1,20 @@
 import { describe, expect, it } from "vitest";
+import { PLAN_FEATURES } from "@/config/plans";
 import ru from "../../messages/ru.json";
 import uz from "../../messages/uz.json";
 
-type Messages = { [key: string]: string | string[] | Messages };
+type Messages = { [key: string]: unknown };
 
-// Flattens nested messages into ["Home.title", "..."] pairs (arrays become "key.0", "key.1").
+// Flattens nested messages into ["Home.title", "..."] pairs. Anything that is not a
+// string or an object (e.g. an array) is reported as an error: next-intl precompiles
+// messages at build time and only supports nested objects of strings.
 function flatten(messages: Messages, prefix = ""): Array<[string, string]> {
   return Object.entries(messages).flatMap(([key, value]) => {
     const path = prefix ? `${prefix}.${key}` : key;
     if (typeof value === "string") return [[path, value] as [string, string]];
-    if (Array.isArray(value))
-      return value.map((item, i) => [`${path}.${i}`, item] as [string, string]);
-    return flatten(value, path);
+    if (value && typeof value === "object" && !Array.isArray(value))
+      return flatten(value as Messages, path);
+    throw new Error(`${path}: only strings and nested objects are allowed`);
   });
 }
 
@@ -36,5 +39,11 @@ describe("messages", () => {
     for (const [key, value] of uzEntries) {
       expect(wrongApostrophe.test(value), `${key}: "${value}"`).toBe(false);
     }
+  });
+
+  it("has a text for every plan feature", () => {
+    const keys = new Set(uzEntries.map(([key]) => key));
+    for (const k of PLAN_FEATURES.START) expect(keys.has(`Landing.startFeatures.${k}`)).toBe(true);
+    for (const k of PLAN_FEATURES.PRO) expect(keys.has(`Landing.proFeatures.${k}`)).toBe(true);
   });
 });

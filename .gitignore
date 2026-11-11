@@ -41,3 +41,6 @@ next-env.d.ts
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Database backups (npm run db:backup:prod) — personal data, never in git
+/backups

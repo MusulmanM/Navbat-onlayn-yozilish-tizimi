@@ -71,3 +71,20 @@ Oldin: `.env.local` da `ADMIN_TELEGRAM_IDS` ga o'z ID'ingiz (botga `/id` yozing)
 6. **To'lov:** "Toʻlov qoʻshish" (Pro, 199 000, 30 kun, Click) → "Toʻlovni saqlash" → sahifada yozilish yana ishlaydi, egaga "✅ Toʻlov qabul qilindi!" keladi, obuna sahifasida to'lov tarixi.
 7. **Ruxsat:** admin bo'lmagan akkaunt bilan `/admin` → "Sahifa topilmadi".
 8. **Limit:** Start tarifida ikkinchi faol usta qo'shib bo'lmaydi → "Tarif boʻyicha 1 ta faol usta mumkin" va "Tarifni oshirish".
+
+## 6-bosqich: Internetga chiqarish (production)
+
+Oldin: `docs/SETUP_UZ.md` dagi 1–10 bo'limlar bajarilgan. `SAYT` — sizning manzilingiz (masalan `https://navbat-uz.vercel.app`).
+
+1. **Holat:** `SAYT/api/health` → `{"ok":true,"database":true,"utc":true,…}`.
+2. **Landing va SEO:** `SAYT` va `SAYT/ru` ochiladi; `SAYT/robots.txt` va `SAYT/sitemap.xml` ochiladi, ichidagi manzillar `SAYT` bilan boshlanadi (localhost emas).
+3. **Demo:** "Demoni koʻrish" → `SAYT/b/demo-barber` → xizmat → usta → kun → vaqt → ism va telefon → "Yozilish" → "Tayyor!" sahifasi.
+4. **Kirish:** "Kirish" → "Telegram orqali kirish" → asosiy botda Start → saytga qaytib panel ochiladi (yoki onboarding).
+5. **Bot:** asosiy botda `/start`, `/yordam`, `/til` ishlaydi; menyuda buyruqlar o'zbekcha (Telegram tili ruscha bo'lsa — ruscha).
+6. **Yozilish → xabar:** boshqa telefondan biznes sahifangizdan yozilish → egaga botda "Yangi yozilish" + "Tasdiqlash/Rad etish" → "Tasdiqlash" → mijozga "tasdiqlandi" xabari (mijoz botda Start bosgan bo'lsa).
+7. **Mini App:** telefonda biznes sahifangizdagi Telegram orqali yozilish havolasini bosing (`t.me/BOT?start=biz_<slug>`) → botda biznes kartasi → "📅 Yozilish" sahifani Telegram ichida ochadi; yozilgandan keyin "Yopish".
+8. **Cron:** cron-job.org → ikkala vazifa "Test run" → 200; 2,5 soat keyingi yozilish uchun 2 soatlik eslatma keladi; ertasi kuni 08:00 da egaga kunlik hisobot.
+9. **Admin:** `SAYT/admin` ochiladi (sizning ID'ingiz `ADMIN_TELEGRAM_IDS` da), boshqa akkauntda — "Sahifa topilmadi".
+10. **Xavfsizlik:** `SAYT/api/cron/reminders` ni brauzerda ochish → 401 (kalitsiz ishlamaydi).
+11. **Tezlik:** https://pagespeed.web.dev → `SAYT/b/<slug>` va `SAYT` → Mobile: Performance, Accessibility, Best Practices, SEO — har biri 85+.
+12. **Zaxira:** `npm run db:backup:prod` → `backups/` da yangi fayl.

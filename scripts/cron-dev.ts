@@ -9,19 +9,27 @@ const secret = process.env.CRON_SECRET ?? "";
 const INTERVAL_MS = 60_000;
 
 if (secret.length < 32) {
-  console.error("❌ CRON_SECRET topilmadi yoki 32 belgidan qisqa — .env.local faylini tekshiring (npm run secret).");
+  console.error(
+    "❌ CRON_SECRET topilmadi yoki 32 belgidan qisqa — .env.local faylini tekshiring (npm run secret).",
+  );
   process.exit(1);
 }
 
 async function call(path: string) {
   const started = Date.now();
   try {
-    const response = await fetch(`${appUrl}${path}`, { headers: { Authorization: `Bearer ${secret}` } });
+    const response = await fetch(`${appUrl}${path}`, {
+      headers: { Authorization: `Bearer ${secret}` },
+    });
     const body = await response.text();
     const time = new Date().toLocaleTimeString("uz-UZ", { hour12: false });
-    console.log(`[${time}] ${path} → ${response.status} (${Date.now() - started} ms) ${body.slice(0, 300)}`);
+    console.log(
+      `[${time}] ${path} → ${response.status} (${Date.now() - started} ms) ${body.slice(0, 300)}`,
+    );
   } catch (error) {
-    console.error(`❌ ${path}: sayt ishlamayapti? (${error instanceof Error ? error.message : error})`);
+    console.error(
+      `❌ ${path}: sayt ishlamayapti? (${error instanceof Error ? error.message : error})`,
+    );
   }
 }
 

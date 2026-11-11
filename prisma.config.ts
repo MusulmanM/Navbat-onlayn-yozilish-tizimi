@@ -2,8 +2,10 @@
 import { loadEnvConfig } from "@next/env";
 import { defineConfig } from "prisma/config";
 
-// Load .env, .env.local etc. the same way Next.js does.
-loadEnvConfig(process.cwd());
+// Local commands load .env.local etc. the same way `next dev` does (never .env.production.local).
+// Production commands (`npm run db:deploy:prod`) go through scripts/with-prod-env.ts, which has
+// already loaded only .env.production.local and set NAVBAT_ENV=production.
+if (process.env.NAVBAT_ENV !== "production") loadEnvConfig(process.cwd());
 
 export default defineConfig({
   schema: "prisma/schema.prisma",

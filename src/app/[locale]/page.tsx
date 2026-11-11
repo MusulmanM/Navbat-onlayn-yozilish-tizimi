@@ -11,7 +11,7 @@ import {
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { isLocale, type Locale } from "@/config/locales";
-import { PLANS } from "@/config/plans";
+import { PLAN_FEATURES, PLANS } from "@/config/plans";
 import { absoluteUrl, publicEnv, supportLink } from "@/config/public-env";
 import { PhoneMockup } from "@/components/marketing/phone-mockup";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -63,14 +63,14 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
       key: "start",
       name: t("startName"),
       price: PLANS.START.priceSom,
-      features: t.raw("startFeatures") as string[],
+      features: PLAN_FEATURES.START.map((k) => t(`startFeatures.${k}`)),
       highlight: false,
     },
     {
       key: "pro",
       name: t("proName"),
       price: PLANS.PRO.priceSom,
-      features: t.raw("proFeatures") as string[],
+      features: PLAN_FEATURES.PRO.map((k) => t(`proFeatures.${k}`)),
       highlight: true,
     },
   ];

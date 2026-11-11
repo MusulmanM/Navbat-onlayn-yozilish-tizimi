@@ -15,10 +15,13 @@
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "bot:dev": "tsx scripts/bot-dev.ts",
-    "bot:set-webhook": "tsx scripts/set-webhook.ts",
+    "bot:set-webhook": "tsx scripts/with-prod-env.ts tsx scripts/set-webhook.ts",
     "cron:dev": "tsx scripts/cron-dev.ts",
     "secret": "tsx scripts/secret.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "db:deploy:prod": "tsx scripts/with-prod-env.ts prisma migrate deploy",
+    "db:seed:prod": "tsx scripts/with-prod-env.ts tsx prisma/seed.ts",
+    "db:backup:prod": "tsx scripts/with-prod-env.ts tsx scripts/db-backup.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

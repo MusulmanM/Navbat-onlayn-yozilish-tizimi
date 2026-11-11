@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { isLocale, type Locale } from "@/config/locales";
-import { PLANS } from "@/config/plans";
+import { PLAN_FEATURES, PLANS } from "@/config/plans";
 import { supportLink } from "@/config/public-env";
 import { BillingClaim } from "@/components/panel/billing-claim";
 import { EmptyState, PageHeader } from "@/components/panel/page-header";
@@ -83,13 +83,13 @@ export default async function BillingPage({ params }: PageProps<"/[locale]/panel
               code: "START",
               name: tl("startName"),
               price: formatAmount(PLANS.START.priceSom),
-              features: tl.raw("startFeatures") as string[],
+              features: PLAN_FEATURES.START.map((k) => tl(`startFeatures.${k}`)),
             },
             {
               code: "PRO",
               name: tl("proName"),
               price: formatAmount(PLANS.PRO.priceSom),
-              features: tl.raw("proFeatures") as string[],
+              features: PLAN_FEATURES.PRO.map((k) => tl(`proFeatures.${k}`)),
             },
           ]}
         />

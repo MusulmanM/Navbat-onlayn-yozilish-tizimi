@@ -1,14 +1,16 @@
 // Server environment variables, validated with zod (spec 4).
 import { z } from "zod";
 
+const MISSING = "topilmadi";
 const optional = z.string().trim().optional().default("");
-const secret = z.string().trim().min(32, "kamida 32 belgi boʻlishi kerak");
+const required = z.string({ error: MISSING }).trim().min(1, MISSING);
+const secret = z.string({ error: MISSING }).trim().min(32, "kamida 32 belgi boʻlishi kerak");
 
 const schema = z.object({
-  DATABASE_URL: z.string().trim().min(1, "topilmadi"),
+  DATABASE_URL: required,
   DIRECT_URL: optional,
   NEXT_PUBLIC_APP_URL: z.url("toʻliq manzil boʻlishi kerak, masalan https://navbat.uz"),
-  NEXT_PUBLIC_BRAND_NAME: z.string().trim().min(1, "topilmadi"),
+  NEXT_PUBLIC_BRAND_NAME: required,
   NEXT_PUBLIC_SUPPORT_TELEGRAM: optional,
   TELEGRAM_BOT_TOKEN: optional,
   NEXT_PUBLIC_TELEGRAM_BOT_USERNAME: optional,
@@ -23,8 +25,8 @@ const schema = z.object({
 
 /** In production everything the bot and cron need must be present as well. */
 const productionSchema = schema.extend({
-  TELEGRAM_BOT_TOKEN: z.string().trim().min(1, "topilmadi"),
-  NEXT_PUBLIC_TELEGRAM_BOT_USERNAME: z.string().trim().min(1, "topilmadi"),
+  TELEGRAM_BOT_TOKEN: required,
+  NEXT_PUBLIC_TELEGRAM_BOT_USERNAME: required,
   TELEGRAM_WEBHOOK_SECRET: secret,
   CRON_SECRET: secret,
 });

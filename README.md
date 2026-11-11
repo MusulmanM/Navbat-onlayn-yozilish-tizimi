@@ -4,7 +4,7 @@ Kichik xizmat bizneslari (sartaroshxona, salon, klinika, avtoservis va h.k.) uch
 
 "Navbat" — ishchi nom. Saytdagi nom `.env.local` dagi `NEXT_PUBLIC_BRAND_NAME` dan olinadi.
 
-To'liq topshiriq: [docs/SPEC.md](docs/SPEC.md) · Holat: [docs/PROGRESS.md](docs/PROGRESS.md)
+To'liq topshiriq: [docs/SPEC.md](docs/SPEC.md) · Holat: [docs/PROGRESS.md](docs/PROGRESS.md) · **Internetga chiqarish: [docs/SETUP_UZ.md](docs/SETUP_UZ.md)**
 
 ## 1. Kerakli dasturlar
 
@@ -53,11 +53,20 @@ Sozlamalar `.env.local` faylida saqlanadi. Agar u yo'q bo'lsa, `.env.example` da
 | `npm run format`              | Kodni bir xil ko'rinishga keltiradi (Prettier)                   |
 | `npm run secret`              | 64 belgilik tasodifiy maxfiy kalit chiqaradi                     |
 | `npm run db:migrate`          | Bazaga yangi o'zgarishlarni qo'llaydi (ishlab chiqishda)         |
-| `npm run db:deploy`           | Production bazaga migratsiyalarni qo'llaydi                      |
 | `npm run db:seed`             | Demo ma'lumotlarni qo'shadi                                      |
 | `npm run db:studio`           | Bazani brauzerda ko'rish                                         |
 | `npm run bot:dev`             | Test botni kompyuterda ishga tushiradi                           |
-| `npm run bot:set-webhook`     | Asosiy botni production saytga ulaydi                            |
 | `npm run cron:dev`            | Eslatmalar va kunlik vazifalarni lokal'da har daqiqada chaqiradi |
 
-`db:*`, `bot:*` va `cron:dev` keyingi bosqichlarda ishlay boshlaydi (qarang: `docs/PROGRESS.md`).
+### Production (haqiqiy sayt) buyruqlari
+
+Bular faqat `.env.production.local` faylidagi sozlamalarni ishlatadi (`.env.local` hisobga olinmaydi). Batafsil: [docs/SETUP_UZ.md](docs/SETUP_UZ.md).
+
+| Buyruq                    | Nima qiladi                                                       |
+| ------------------------- | ----------------------------------------------------------------- |
+| `npm run db:deploy:prod`  | Production bazada jadvallarni yaratadi/yangilaydi (migratsiyalar) |
+| `npm run db:seed:prod`    | Production bazaga demo biznesni qo'shadi ("Demoni ko'rish" uchun) |
+| `npm run db:backup:prod`  | Production bazadan zaxira nusxa oladi (`backups/` papkasiga)      |
+| `npm run bot:set-webhook` | Asosiy botni saytga ulaydi, buyruqlar va tavsifni o'rnatadi       |
+
+Server holati: `/api/health` (baza ulanishi va UTC tekshiruvi). Docker varianti: `Dockerfile` boshidagi izohlar.

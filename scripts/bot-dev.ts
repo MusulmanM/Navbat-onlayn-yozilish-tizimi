@@ -31,6 +31,9 @@ async function main() {
 }
 
 main().catch((error: unknown) => {
-  console.error("❌ Botni ishga tushirib boʻlmadi:", error instanceof Error ? error.message : error);
+  console.error(
+    "❌ Botni ishga tushirib boʻlmadi:",
+    error instanceof Error ? error.message : error,
+  );
   process.exit(1);
 });

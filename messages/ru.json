@@ -675,8 +675,17 @@
     "perMonth": "/мес",
     "startName": "Start",
     "proName": "Pro",
-    "startFeatures": ["1 мастер", "Безлимитные записи", "Напоминания в Telegram", "База клиентов"],
-    "proFeatures": ["До 5 мастеров", "Всё из Start", "Статистика по мастерам"],
+    "startFeatures": {
+      "staff": "1 мастер",
+      "unlimited": "Безлимитные записи",
+      "reminders": "Напоминания в Telegram",
+      "clients": "База клиентов"
+    },
+    "proFeatures": {
+      "staff": "До 5 мастеров",
+      "everything": "Всё из Start",
+      "stats": "Статистика по мастерам"
+    },
     "popular": "Популярный",
     "pricingNote": "На обоих тарифах — 14 дней бесплатно. Нужно больше 5 мастеров? Свяжитесь с нами.",
     "faqTitle": "Частые вопросы",

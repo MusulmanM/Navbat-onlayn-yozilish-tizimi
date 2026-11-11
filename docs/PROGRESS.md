@@ -1,6 +1,6 @@
 # Bosqichlar holati
 
-Joriy bosqich: **6 — Internetga chiqarish (jarayonda)**
+Joriy bosqich: **6 — Internetga chiqarish: kod tayyor, egasining qo'lda qadamlari qoldi** (`docs/SETUP_UZ.md`)
 Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 0-bosqich: Tayyorgarlik
@@ -62,7 +62,12 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 
 ## 6-bosqich: Internetga chiqarish
 
-- [ ] `docs/SETUP_UZ.md` (17-bo'lim)
-- [ ] GitHub, Vercel (`fra1`), `npm run db:deploy`, asosiy bot, webhook, cron-job.org, admin ID
-- [ ] `Dockerfile`
-- [ ] Production'da `docs/QA.md` ssenariylari, Lighthouse mobile ≥ 85
+- [x] `docs/SETUP_UZ.md` (17-bo'lim): botlar, Supabase, `.env.production.local`, GitHub, Vercel, webhook, admin ID, cron-job.org, domen, tekshiruv ro'yxati, zaxira nusxa, muammolar
+- [x] Production buyruqlari: `db:deploy:prod`, `db:seed:prod`, `db:backup:prod`, `bot:set-webhook` (faqat `.env.production.local`, avval tekshiruv) — lokal bazada sinaldi
+- [x] `vercel.json` (`fra1`, `develop` deploy qilinmaydi), `/api/health`, ishga tushishda sozlamalar tekshiruvi, favicon
+- [x] `Dockerfile` + `.dockerignore` (standalone server lokal'da sinaldi; Docker'ning o'zi bu kompyuterda yo'q)
+- [x] Yengillashtirish: xabarlar build paytida kompilyatsiya qilinadi (biznes sahifasida JS ~16 KB kam, TBT 2,7 s → 1,3 s), til almashtirgich a11y
+- [x] Lokal Lighthouse (mobil): biznes sahifasi 76/100/100, landing 74/100/100 — sekin kompyuterda; haqiqiy o'lchov production'da
+- [x] `develop` → `main` (lokal'da birlashtirildi)
+- [ ] GitHub'ga yuklash (`git push`), Vercel, Supabase, asosiy bot, webhook, cron-job.org, admin ID — egasi qiladi (`docs/SETUP_UZ.md`)
+- [ ] Production'da `docs/QA.md` 6-bo'lim ssenariylari, pagespeed.web.dev mobile ≥ 85 — egasi qiladi

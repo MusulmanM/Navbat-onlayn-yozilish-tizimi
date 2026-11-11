@@ -27,7 +27,6 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             scroll={false}
             hrefLang={locale}
             aria-current={active ? "true" : undefined}
-            aria-label={t(`${locale}Full`)}
             className={cn(
               "inline-flex h-10 min-w-11 items-center justify-center rounded-md px-2.5 transition-colors",
               active
@@ -36,6 +35,11 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             )}
           >
             {t(locale)}
+            {/* Accessible name keeps the visible "UZ"/"RU" and adds the full name. */}
+            <span className="sr-only" lang={locale}>
+              {" "}
+              {t(`${locale}Full`)}
+            </span>
           </Link>
         );
       })}

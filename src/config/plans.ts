@@ -14,3 +14,9 @@ export type PaidPlanCode = (typeof PAID_PLANS)[number];
 
 export const PAYMENT_METHODS = ["click", "payme", "card", "cash", "other"] as const;
 export type PaymentMethod = (typeof PAYMENT_METHODS)[number];
+
+/** Feature bullets per paid plan; texts live in Landing.startFeatures / Landing.proFeatures. */
+export const PLAN_FEATURES = {
+  START: ["staff", "unlimited", "reminders", "clients"],
+  PRO: ["staff", "everything", "stats"],
+} as const satisfies Record<PaidPlanCode, readonly string[]>;

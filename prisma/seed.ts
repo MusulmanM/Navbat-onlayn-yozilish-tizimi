@@ -7,7 +7,8 @@ import { defaultWeeklySchedule } from "@/lib/schedule";
 import { addDays, dateInZone, localDateTimeToUtc, MINUTE_MS } from "@/lib/time";
 import { randomToken } from "@/lib/tokens";
 
-loadEnvConfig(process.cwd());
+// Local env files unless run via `npm run db:seed:prod` (see prisma.config.ts).
+if (process.env.NAVBAT_ENV !== "production") loadEnvConfig(process.cwd());
 
 const TZ = "Asia/Tashkent";
 const SLUG = "demo-barber";

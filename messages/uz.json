@@ -675,8 +675,17 @@
     "perMonth": "/oy",
     "startName": "Start",
     "proName": "Pro",
-    "startFeatures": ["1 usta", "Cheksiz yozilishlar", "Telegram eslatmalar", "Mijozlar bazasi"],
-    "proFeatures": ["5 tagacha usta", "Startʼdagi hamma narsa", "Ustalar boʻyicha statistika"],
+    "startFeatures": {
+      "staff": "1 usta",
+      "unlimited": "Cheksiz yozilishlar",
+      "reminders": "Telegram eslatmalar",
+      "clients": "Mijozlar bazasi"
+    },
+    "proFeatures": {
+      "staff": "5 tagacha usta",
+      "everything": "Startʼdagi hamma narsa",
+      "stats": "Ustalar boʻyicha statistika"
+    },
     "popular": "Mashhur",
     "pricingNote": "Ikkala tarifda ham 14 kun bepul sinov. 5 tadan koʻp usta kerakmi? Biz bilan bogʻlaning.",
     "faqTitle": "Koʻp beriladigan savollar",

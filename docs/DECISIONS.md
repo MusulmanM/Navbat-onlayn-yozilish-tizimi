@@ -80,3 +80,17 @@ Format: sana — qaror — sabab.
 - 2026-11-11 — Admin bo'lmagan foydalanuvchi `/admin` da 404 ko'radi (sahifa borligi ham bildirilmaydi).
 - 2026-11-11 — `sitemap.xml` dinamik (bazadan): faqat nashr qilingan, bloklanmagan, obunasi faol, demo bo'lmagan bizneslar; ikkala til `alternates` bilan.
 - 2026-11-11 — Huquqiy sahifalar matni `messages/*.json` da, tepasida "Loyiha matni. Yurist tomonidan tekshirilishi kerak." yozuvi.
+
+## 6-bosqich
+
+- 2026-11-11 — Production buyruqlari (`db:deploy:prod`, `db:seed:prod`, `db:backup:prod`, `bot:set-webhook`) faqat `.env.production.local` ni o'qiydi va avval to'liq tekshiradi (`checkProductionEnv`); `.env.local` ga jim qaytib ketmaydi. Oddiy `db:deploy` topshiriqdagidek qoldi (joriy sozlamalar bilan).
+- 2026-11-11 — Server ishga tushganda production'da sozlamalar tekshiriladi (`src/instrumentation.ts`): biror kalit yetishmasa aniq o'zbekcha xato bilan to'xtaydi.
+- 2026-11-11 — `/api/health`: bazaga ulanish va sessiya vaqt zonasi UTC ekanini tekshiradi (Supabase pooler ulanishdagi `options` ni e'tiborsiz qoldirishi mumkin; Supabase bazasi odatda UTC). UTC bo'lmasa 503 — SETUP_UZ'da tuzatish yo'li.
+- 2026-11-11 — Supabase ulanishi: ilova `?uselibpqcompat=true&sslmode=require` (shifrlangan; node-postgres eski `require` ma'nosida Supabase sertifikatini rad etardi), migratsiyalar `?sslmode=require`.
+- 2026-11-11 — next-intl xabarlari build paytida oldindan kompilyatsiya qilinadi (`experimental.messages.precompile`): brauzerga `intl-messageformat` (~12 KB gzip) yuborilmaydi. Shu sababli xabarlarda massiv bo'lmaydi — tarif imkoniyatlari kalitli obyekt (`PLAN_FEATURES`), test buni tekshiradi.
+- 2026-11-11 — Til almashtirgichning ekran o'quvchi nomi ko'rinadigan "UZ"/"RU" ni o'z ichiga oladi (Lighthouse "label-content-name-mismatch").
+- 2026-11-11 — Vercel: region `fra1` va `develop` branch uchun deploy o'chirilgan (`vercel.json`) — preview production bazasi bilan ishlamasin. Sayt faqat `main` dan.
+- 2026-11-11 — Docker (VPS varianti): `node:26-slim`, Next.js `standalone` (`NEXT_OUTPUT=standalone`), root bo'lmagan foydalanuvchi, `HEALTHCHECK` → `/api/health`. Maxfiy kalitlar image ichiga kirmaydi (`--env-file`). `server.js` lokal sinaldi: `HOSTNAME=0.0.0.0` shart (127.0.0.1 da o'zbekcha sahifalar o'ziga qayta yo'naltirilib qoladi).
+- 2026-11-11 — Zaxira nusxa: `pg_dump` (faqat `public` sxema, custom format) `backups/` ga; papka git va Docker'dan chiqarilgan (shaxsiy ma'lumot).
+- 2026-11-11 — Favicon: `src/app/icon.svg` (brend rangi, kalendar belgisi); standart `favicon.ico` olib tashlandi.
+- 2026-11-11 — Lighthouse (mobil, lokal production, sekin kompyuter): biznes sahifasi Perf 76 / A11y 100 / BP 100, landing Perf 74 / 100 / 100. SEO'dagi xatolar faqat lokal (canonical localhost:3000 ga, demo `noindex`). Asosiy vaqt React'ning o'zi; haqiqiy telefonda pagespeed.web.dev bilan tekshiriladi (QA 6-bo'lim).
