@@ -71,7 +71,8 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 - [x] `develop` → `main` (lokal'da birlashtirildi)
 - [x] `main` GitHub'ga yuklandi (egasi, 2026-11-11)
 - [x] Supabase (Frankfurt, Data API o'chirilgan) ulandi (2026-11-12): `prisma migrate deploy` — 2 ta migratsiya, `btree_gist` va `Booking_no_overlap` SQL bilan tasdiqlandi; demo seed (`demo-barber`, 2 usta, 4 xizmat); vaqt zonasi UTC; lokal `npm run dev` shu bazada ishlaydi, bo'sh vaqtlar API orqali tekshirildi
-- [ ] Vercel, asosiy bot, webhook, cron-job.org, admin ID — egasi qiladi (`docs/SETUP_UZ.md`)
+- [x] Vercel (2026-11-12): https://onlayn-navbat.vercel.app — CLI orqali deploy (`fra1`), production sozlamalari kiritildi, `/api/health` ok; bot webhook ulandi (@onlayn_navbat_1bot)
+- [ ] Vercel loyihasini GitHub'ga ulash (avtomatik deploy), cron-job.org, admin ID, yordam username va to'lov ko'rsatmasi — egasi qiladi (`docs/SETUP_UZ.md`)
 - [ ] Production'da `docs/QA.md` 6-bo'lim ssenariylari, pagespeed.web.dev mobile ≥ 85 — egasi qiladi
 
 ## Tuzatishlar (6-bosqichdan keyin)
