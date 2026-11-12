@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { botStartLink } from "@/config/public-env";
 import { bookingTimes } from "@/lib/bookings";
-import { db, isOverlapError } from "@/lib/db";
+import { db, isOverlapError, withTxRetry } from "@/lib/db";
 import { notifyLater } from "@/lib/notify";
 import { normalizePhone } from "@/lib/phone";
 import { APOSTROPHE_CHARS, digitsOnly, likePattern, normalizeSearch } from "@/lib/search";
@@ -103,46 +103,48 @@ export async function createPanelBooking(
   );
 
   try {
-    const booking = await db.$transaction(async (tx) => {
-      let clientId: string;
-      if (input.clientId) {
-        const client = await tx.client.findFirst({
-          where: { id: input.clientId, businessId: business.id },
-        });
-        if (!client) throw new PanelError("VALIDATION_ERROR", { clientId: "client" });
-        clientId = client.id;
-      } else {
-        const created = await tx.client.upsert({
-          where: { businessId_phone: { businessId: business.id, phone: input.newClient!.phone } },
-          update: {},
-          create: {
+    const booking = await withTxRetry(() =>
+      db.$transaction(async (tx) => {
+        let clientId: string;
+        if (input.clientId) {
+          const client = await tx.client.findFirst({
+            where: { id: input.clientId, businessId: business.id },
+          });
+          if (!client) throw new PanelError("VALIDATION_ERROR", { clientId: "client" });
+          clientId = client.id;
+        } else {
+          const created = await tx.client.upsert({
+            where: { businessId_phone: { businessId: business.id, phone: input.newClient!.phone } },
+            update: {},
+            create: {
+              businessId: business.id,
+              name: input.newClient!.name,
+              phone: input.newClient!.phone,
+            },
+          });
+          clientId = created.id;
+        }
+        return tx.booking.create({
+          data: {
             businessId: business.id,
-            name: input.newClient!.name,
-            phone: input.newClient!.phone,
+            staffId: input.staffId,
+            serviceId: service.id,
+            clientId,
+            startsAt,
+            endsAt,
+            blockedUntil,
+            status: "CONFIRMED",
+            source: "PANEL",
+            serviceNameSnapshot: service.nameUz,
+            priceSnapshot: service.price,
+            durationSnapshot: service.durationMinutes,
+            internalNote: input.internalNote || null,
+            manageToken: randomToken(),
           },
+          include: { client: { select: { telegramId: true } } },
         });
-        clientId = created.id;
-      }
-      return tx.booking.create({
-        data: {
-          businessId: business.id,
-          staffId: input.staffId,
-          serviceId: service.id,
-          clientId,
-          startsAt,
-          endsAt,
-          blockedUntil,
-          status: "CONFIRMED",
-          source: "PANEL",
-          serviceNameSnapshot: service.nameUz,
-          priceSnapshot: service.price,
-          durationSnapshot: service.durationMinutes,
-          internalNote: input.internalNote || null,
-          manageToken: randomToken(),
-        },
-        include: { client: { select: { telegramId: true } } },
-      });
-    });
+      }),
+    );
     if (booking.client.telegramId !== null) await scheduleReminders(booking.id, now);
     const bookingId = booking.id;
     notifyLater((n) => n.bookingCreated(bookingId));
@@ -197,10 +199,12 @@ export async function rescheduleBooking(
   );
 
   try {
-    await db.booking.update({
-      where: { id: booking.id },
-      data: { startsAt, endsAt, blockedUntil, staffId: input.staffId },
-    });
+    await withTxRetry(() =>
+      db.booking.update({
+        where: { id: booking.id },
+        data: { startsAt, endsAt, blockedUntil, staffId: input.staffId },
+      }),
+    );
   } catch (error) {
     if (isOverlapError(error)) throw new ApiError(409, "SLOT_TAKEN");
     throw error;

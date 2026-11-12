@@ -81,6 +81,7 @@ export default async function OpengraphImage({
         {cta}
       </div>
     </div>,
-    { ...size, fonts },
+    // An empty fonts array makes ImageResponse throw; omit it to use the built-in font.
+    { ...size, ...(fonts.length > 0 ? { fonts } : {}) },
   );
 }

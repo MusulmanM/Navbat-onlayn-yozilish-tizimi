@@ -5,7 +5,7 @@ import { MAX_ACTIVE_BOOKINGS_PER_PHONE } from "@/config/site";
 import type { BookingSource, BookingStatus } from "@/generated/prisma/client";
 import { canAcceptOnlineBookings, getAccess } from "@/lib/access";
 import { bookingTimes, checkTransition } from "@/lib/bookings";
-import { db, isOverlapError } from "@/lib/db";
+import { db, isOverlapError, withTxRetry } from "@/lib/db";
 import { notifyLater } from "@/lib/notify";
 import { normalizePhone } from "@/lib/phone";
 import { rateLimitIp } from "@/lib/rate-limit";
@@ -135,33 +135,35 @@ export async function createPublicBooking(
   } | null = null;
   for (const staffId of candidates.slice(0, MAX_STAFF_ATTEMPTS)) {
     try {
-      created = await db.$transaction(async (tx) => {
-        const client = await tx.client.upsert({
-          where: { businessId_phone: { businessId: business.id, phone: input.phone } },
-          update: telegramId ? { telegramId } : {},
-          create: { businessId: business.id, name: input.name, phone: input.phone, telegramId },
-        });
-        const booking = await tx.booking.create({
-          data: {
-            businessId: business.id,
-            staffId,
-            serviceId: service.id,
-            clientId: client.id,
-            startsAt,
-            endsAt,
-            blockedUntil,
-            status,
-            source,
-            serviceNameSnapshot: service.nameUz,
-            priceSnapshot: service.price,
-            durationSnapshot: service.durationMinutes,
-            clientComment: input.comment,
-            manageToken: randomToken(),
-          },
-          select: { id: true, manageToken: true, staffId: true },
-        });
-        return { ...booking, clientTelegramId: client.telegramId };
-      });
+      created = await withTxRetry(() =>
+        db.$transaction(async (tx) => {
+          const client = await tx.client.upsert({
+            where: { businessId_phone: { businessId: business.id, phone: input.phone } },
+            update: telegramId ? { telegramId } : {},
+            create: { businessId: business.id, name: input.name, phone: input.phone, telegramId },
+          });
+          const booking = await tx.booking.create({
+            data: {
+              businessId: business.id,
+              staffId,
+              serviceId: service.id,
+              clientId: client.id,
+              startsAt,
+              endsAt,
+              blockedUntil,
+              status,
+              source,
+              serviceNameSnapshot: service.nameUz,
+              priceSnapshot: service.price,
+              durationSnapshot: service.durationMinutes,
+              clientComment: input.comment,
+              manageToken: randomToken(),
+            },
+            select: { id: true, manageToken: true, staffId: true },
+          });
+          return { ...booking, clientTelegramId: client.telegramId };
+        }),
+      );
       break;
     } catch (error) {
       if (isOverlapError(error)) continue; // someone took this staff member a moment ago

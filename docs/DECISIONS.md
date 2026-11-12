@@ -94,3 +94,8 @@ Format: sana — qaror — sabab.
 - 2026-11-11 — Zaxira nusxa: `pg_dump` (faqat `public` sxema, custom format) `backups/` ga; papka git va Docker'dan chiqarilgan (shaxsiy ma'lumot).
 - 2026-11-11 — Favicon: `src/app/icon.svg` (brend rangi, kalendar belgisi); standart `favicon.ico` olib tashlandi.
 - 2026-11-11 — Lighthouse (mobil, lokal production, sekin kompyuter): biznes sahifasi Perf 76 / A11y 100 / BP 100, landing Perf 74 / 100 / 100. SEO'dagi xatolar faqat lokal (canonical localhost:3000 ga, demo `noindex`). Asosiy vaqt React'ning o'zi; haqiqiy telefonda pagespeed.web.dev bilan tekshiriladi (QA 6-bo'lim).
+
+## 6-bosqichdan keyin
+
+- 2026-11-12 — OG rasm: shrift yuklanmasa `fonts` umuman berilmaydi (bo'sh ro'yxat bilan `ImageResponse` "No fonts are loaded" xatosini beradi), standart shrift ishlatiladi.
+- 2026-11-12 — Yozilish yaratish/ko'chirish `withTxRetry` ichida: Postgres exclusion constraint parallel yozuvlarda deadlock berishi mumkin (Prisma `P2034`), 3 martagacha qisqa tasodifiy pauza bilan qayta uriniladi. Lokal sinov: bir vaqtga 20 parallel so'rov × 80 — retry'siz 19 ta `P2034`, retry bilan 0; har vaqtga aniq bitta yozilish.

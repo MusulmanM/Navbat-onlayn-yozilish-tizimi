@@ -43,6 +43,31 @@ export function isOverlapError(error: unknown): boolean {
   return text.includes("23P01") || text.includes("Booking_no_overlap");
 }
 
+/**
+ * Deadlock or write conflict between concurrent transactions (Prisma P2034,
+ * Postgres 40P01/40001). Concurrent inserts checked by the Booking_no_overlap
+ * exclusion constraint can deadlock; Postgres aborts one of them and it is safe to retry.
+ */
+export function isRetryableTxError(error: unknown): boolean {
+  if (!error || typeof error !== "object") return false;
+  const code = (error as { code?: unknown }).code;
+  if (code === "P2034") return true;
+  const text = `${(error as { message?: unknown }).message ?? ""}`;
+  return text.includes("40P01") || text.includes("40001");
+}
+
+/** Runs `fn` again (with a short random pause) when it fails with a retryable transaction error. */
+export async function withTxRetry<T>(fn: () => Promise<T>, attempts = 3): Promise<T> {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      if (attempt >= attempts || !isRetryableTxError(error)) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 20 + Math.random() * 80 * attempt));
+    }
+  }
+}
+
 /** Unique constraint violation (P2002). */
 export function isUniqueError(error: unknown): boolean {
   return !!error && typeof error === "object" && (error as { code?: unknown }).code === "P2002";

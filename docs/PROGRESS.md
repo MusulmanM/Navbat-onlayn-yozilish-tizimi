@@ -69,5 +69,11 @@ Batafsil talablar: `docs/SPEC.md`, 16-bo'lim.
 - [x] Yengillashtirish: xabarlar build paytida kompilyatsiya qilinadi (biznes sahifasida JS ~16 KB kam, TBT 2,7 s → 1,3 s), til almashtirgich a11y
 - [x] Lokal Lighthouse (mobil): biznes sahifasi 76/100/100, landing 74/100/100 — sekin kompyuterda; haqiqiy o'lchov production'da
 - [x] `develop` → `main` (lokal'da birlashtirildi)
-- [ ] GitHub'ga yuklash (`git push`), Vercel, Supabase, asosiy bot, webhook, cron-job.org, admin ID — egasi qiladi (`docs/SETUP_UZ.md`)
+- [x] `main` GitHub'ga yuklandi (egasi, 2026-11-11)
+- [ ] Vercel, Supabase, asosiy bot, webhook, cron-job.org, admin ID — egasi qiladi (`docs/SETUP_UZ.md`)
 - [ ] Production'da `docs/QA.md` 6-bo'lim ssenariylari, pagespeed.web.dev mobile ≥ 85 — egasi qiladi
+
+## Tuzatishlar (6-bosqichdan keyin)
+
+- [x] Havola rasmi (OG) Google shriftlari yuklanmasa ham chiqadi
+- [x] Bir vaqtga bir paytda kelgan yozilishlarda baza to'qnashuvi (deadlock) qayta urinish bilan hal qilinadi — 20 parallel so'rovli sinovda tasdiqlandi

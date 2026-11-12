@@ -88,3 +88,8 @@ Oldin: `docs/SETUP_UZ.md` dagi 1–10 bo'limlar bajarilgan. `SAYT` — sizning m
 10. **Xavfsizlik:** `SAYT/api/cron/reminders` ni brauzerda ochish → 401 (kalitsiz ishlamaydi).
 11. **Tezlik:** https://pagespeed.web.dev → `SAYT/b/<slug>` va `SAYT` → Mobile: Performance, Accessibility, Best Practices, SEO — har biri 85+.
 12. **Zaxira:** `npm run db:backup:prod` → `backups/` da yangi fayl.
+
+## Tuzatishlar (6-bosqichdan keyin)
+
+1. **Havola rasmi:** `SAYT/b/demo-barber/opengraph-image` ni oching → biznes nomi yozilgan yashil rasm chiqadi (xato sahifa emas). Havolani Telegram'da yuborsangiz ham shu rasm ko'rinadi.
+2. **Bir vaqtga ikki kishi:** ikki xil telefon/brauzerda bir xil vaqtni tanlab, "Tasdiqlash" ni deyarli bir paytda bosing → biri yoziladi, ikkinchisiga "Bu vaqt band" chiqadi (umumiy xato emas).
