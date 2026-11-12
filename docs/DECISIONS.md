@@ -99,3 +99,4 @@ Format: sana — qaror — sabab.
 
 - 2026-11-12 — OG rasm: shrift yuklanmasa `fonts` umuman berilmaydi (bo'sh ro'yxat bilan `ImageResponse` "No fonts are loaded" xatosini beradi), standart shrift ishlatiladi.
 - 2026-11-12 — Yozilish yaratish/ko'chirish `withTxRetry` ichida: Postgres exclusion constraint parallel yozuvlarda deadlock berishi mumkin (Prisma `P2034`), 3 martagacha qisqa tasodifiy pauza bilan qayta uriniladi. Lokal sinov: bir vaqtga 20 parallel so'rov × 80 — retry'siz 19 ta `P2034`, retry bilan 0; har vaqtga aniq bitta yozilish.
+- 2026-11-12 — `vercel.json` da `"framework": "nextjs"`: CLI (`vercel project create`) orqali yaratilgan loyiha freymvorkni o'zi aniqlamaydi va `dist` papkasini qidirib deploy xato beradi.
